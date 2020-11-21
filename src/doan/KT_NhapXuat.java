@@ -316,6 +316,16 @@ public void ThayDoiSlSach(String mas, int tt, int sl) throws IOException {
         }
         return ma;
     }
+    public String KTTaiKhoan() throws IOException{
+        String ma;
+        while(true){
+            ma = sc.nextLine();
+            ArrTaiKhoan tk = new ArrTaiKhoan();
+            if(tk.TimKiem_MaSo(ma)!=-1){
+                System.out.print("- Mã tài khoan");
+            }
+        }
+    }
     public String KTMaNCC() throws IOException{
         String ma;
         while(true){

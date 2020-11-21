@@ -138,6 +138,7 @@ public abstract class ArrNhanVien implements Arr {
         }
     }
 
+    @Override
     public void GhiFile() throws IOException {
         File file = new File(filename);
         if (!file.exists()) {
