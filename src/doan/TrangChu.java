@@ -42,16 +42,16 @@ public class TrangChu {
             System.out.print("- Nhập lựa chọn của bạn: ");
             lcdn = kt.KTLuaChon(3);
             switch (lcdn){
-                case 1:{
-                    String maNV = tk.DangNhap();
-                    String s = maNV;
-                    if(maNV!="admin"){
-                        int vt = nv.TimKiem_MaSo(maNV);
-                        s = nv.getArrNV()[vt].getTen();
-                    }
-                    if(s.compareTo("admin")!= 0){
-                        System.out.println("- Chào mừng: " + s);
-                        do{
+                case 1: {
+				String maNV = tk.DangNhap();
+				String s = maNV;
+				if (maNV != "admin") {
+					int vt = nv.TimKiem_MaSo(maNV);
+                                        s = nv.getArrNV()[vt].getTen();
+				}
+				if (s.compareTo("admin") != 0) {
+					System.out.println("- Chào mừng " + s);
+					do {
                             System.out.println("\n==========MENU==========");
                             System.out.println("1. Nhập hóa đơn");
                             System.out.println("2. Xuất hóa đơn");
@@ -117,6 +117,7 @@ public class TrangChu {
                                 }
                             }
                         }while(thoatUS.compareTo(" ")==0);
+                    
                     }else{
                         //ArrKhachHang akh = new ArrKhachHang(){};
                         //ArrNhaCungCap anc = new ArrNhaCungCap(){};
@@ -184,9 +185,11 @@ public class TrangChu {
                     tk.DangKi();
                     break;
                 }
+                case 3 :{
+                     System.err.println("- Bạn đã thoát.");
+                        break;
+                }
             }
         }while(lcdn!=3);
-        ArrTaiKhoan atk = new ArrTaiKhoan();
-        atk.MenuChinh();
 }
 }

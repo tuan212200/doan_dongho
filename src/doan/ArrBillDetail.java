@@ -90,6 +90,7 @@ public abstract class ArrBillDetail implements Arr{
                
            }
        }
+       GhiFile();
    }
    @Override
     public void HienDS() throws IOException {

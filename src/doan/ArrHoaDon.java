@@ -35,6 +35,7 @@ public class ArrHoaDon implements Arr{
     public void ThemDT() throws IOException{}// không cần vì ta chỉ cần nhập 1 lần 1 hóa đơn vào trong danh sách
     //Thêm 1 nhà cung cấp vào file khi nhập trong class sản phẩm nếu không có
     public void Them1(String maNV) throws IOException{
+        maNV = "admin";
         lenArr+=1;
         arrHoaDon = Arrays.copyOf(arrHoaDon, lenArr+lenFile);
         int vt = lenArr+lenFile-1,tt;
@@ -50,12 +51,12 @@ public class ArrHoaDon implements Arr{
             arrHoaDon[vt].setMAHD(mahd);
             if(tt ==1){
                 if(TimKiem_MaSoNH("NH" + mahd, vt)!= -1){
-                    System.out.print("- Mã hóa đơn bạn nhập không có. Nhập lại: ");
+                    System.out.print("- Mã hóa đơn bạn nhập đã có. Nhập lại: ");
                 }else
                     break;
             }else
                 if(TimKiem_MaSoXH("XH" + mahd, vt)!= -1){
-                    System.out.print("- Mã hóa đơn bạn nhập không có. Nhập lại: ");
+                    System.out.print("- Mã hóa đơn bạn nhập đã có. Nhập lại: ");
                 }else
                     break;
         }
@@ -475,24 +476,25 @@ public class ArrHoaDon implements Arr{
 		} while (lc != 4);
 		return hd;
 	}
-public void Xuat(int lc) throws IOException {
+        public void Xuat(int lc) throws IOException {
 		if (SoluongTrongFile() == 0 && lenArr == 0) {
 			String yn;
-                        System.out.print("- Danh sách hóa đơn chưa có đơn hàng. Bạn có muốn thêm nhân viên ( y / n ): ");
+                        System.out.print("- Danh sách hóa đơn chưa có đơn hàng. Bạn có muốn thêm ( y / n ): ");
 			while (true) {
 				String regex = "[yY]";
 				yn = kt.KTYesNo();
 				if (yn.matches(regex)) {
-					ThemDT();
+                                    String maNV = "admin";
+					Them1(maNV);
 					break;
 				} else {
 					break;
 				}
 			}
 		}
+                
 
 		if (lc == 3) {
-
 			for (int j = 0; j < lenArr + lenFile; j++) {
 				System.out.println("\n============HD " + (j + 1) + "=========");
 				arrHoaDon[j].Xuat();
@@ -505,19 +507,21 @@ public void Xuat(int lc) throws IOException {
 				}
 			}
 		}
+                
 	}
-public void MenuChinh() throws IOException {
+        public void MenuChinh() throws IOException {
 		int lc = 0;
 		boolean check = false;
 		do {
 			System.out.println("=============================MENU============================");
 			System.out.println("1.Tìm kiếm hoá đơn.");
-			System.out.println("2.Xuất.");
-			System.out.println("3.Xoá.");
-			System.out.println("4.Sửa.");
-			System.out.println("5.Thoát.");
+                        System.out.println("2.Nhập");
+			System.out.println("3.Xuất.");
+			System.out.println("4.Xoá.");
+			System.out.println("5.Sửa.");
+			System.out.println("6.Thoát.");
 			System.out.print("- Nhập Lựa Chọn của bạn");
-			lc = kt.KTLuaChon(5);
+			lc = kt.KTLuaChon(6);
 			switch (lc) {
 			case 1: {
 				int lctk = 0;
@@ -591,24 +595,30 @@ public void MenuChinh() throws IOException {
 				} while (lctk != 4);
 				break;
 			}
-			case 2: {
+                        case 2:{
+                             String maNV = "admin";
+					Them1(maNV);
+                                       
+					break;
+                        }
+			case 3: {
 				System.out.print("- Ban muon xuat hoa don 1.Nhap  2.Xuat  3.Tat ca");
 				int tt = kt.KTLuaChon(3);
 				Xuat(tt);
 				kt.Phim();
 				break;
 			}
-			case 3: {
+			case 4: {
 				Xoa();
 				kt.Phim();
 				break;
 			}
-			case 4: {
+			case 5: {
 				Sua();
 				kt.Phim();
 				break;
 			}
-			case 5: {
+			case 6: {
 				System.out.print("- Bạn có muốn ghi vào cơ sở dữ liệu ko( y / n ) ??? : ");
 				String s = kt.KTYesNo();
 				String regex = "y|Y";
@@ -621,7 +631,7 @@ public void MenuChinh() throws IOException {
 			}
 
 			}
-		} while (lc != 5);
+		} while (lc != 6);
 	}
     @Override
   public void TimKiem_Ten(){}
