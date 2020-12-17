@@ -31,6 +31,7 @@ public class ArrHoaDon implements Arr{
     public ArrHoaDon() throws IOException{
         HienDS();
     }
+    
     @Override
     public void ThemDT() throws IOException{}// không cần vì ta chỉ cần nhập 1 lần 1 hóa đơn vào trong danh sách
     //Thêm 1 nhà cung cấp vào file khi nhập trong class sản phẩm nếu không có
@@ -42,7 +43,7 @@ public class ArrHoaDon implements Arr{
         String mahd;
         arrHoaDon[vt] = new HoaDon();
         System.out.print("- Nhập trạng thái ( 1. Nhập hàng | 2. Xuất hàng ): ");
-        tt = kt.KTLuaChon(2);
+        tt = kt.KTLuaChon(3);
         arrHoaDon[vt].setTRANG_THAI(tt);
         System.out.print("- Nhập mã hóa đơn: ");
         //Kiểm tra MAHD trong cả đơn nhập hàng và xuất hàng
@@ -64,13 +65,14 @@ public class ArrHoaDon implements Arr{
             arrHoaDon[vt].NhapNH(mahd, maNV);
             arrBD.Them1(mahd, tt, arrHoaDon[vt].getMANV());
         }
-        else{
+        else if (tt ==2){
             arrHoaDon[vt].NhapXH(mahd, maNV);
             arrBD.Them1(mahd, tt, arrHoaDon[vt].getMANV());
             // Trong hoá đơn xuất hàng thì Tổng tiền của hoá đơn sẽ lấy từ giá của sản phẩm
 			// trong Kho * với số lượng của sản phẩm đó trong CTHD
                         arrHoaDon[vt].setTONG_TIEN(arrBD.TinhTongTienChoHD(mahd));
         }
+       
         // Cập nhật lại ngày xuất hoá đơn trùng vs ngày hiện tại
         arrHoaDon[vt].setNgay_xuat(now);
         GhiFile();
@@ -244,25 +246,25 @@ public class ArrHoaDon implements Arr{
 		}
 	}
 // Tìm kiếm hoá đơn trong ngày C nào đó
-	public void TimKiem_Ngay(int lc, NamSinh ns) throws IOException {
-		if (lc == 3)
-			for (int i = 0; i < lenArr + lenFile; i++) {
-				if (arrHoaDon[i].getNgay_xuat().SoSanh(ns)) {
-					System.out.println("\n============HD " + (i + 1) + "=========");
-					arrHoaDon[i].Xuat();
-				}
-			}
-		else {
-			for (int i = 0; i < lenArr + lenFile; i++) {
-				if (arrHoaDon[i].getTRANG_THAI() == lc && arrHoaDon[i].getNgay_xuat().SoSanh(ns)) {
-					System.out.println("\n============HD " + (i + 1) + "=========");
-					arrHoaDon[i].Xuat();
-				}
-			}
-		}
-	}
-        public void TimKiem_MANV() throws IOException {
-            System.out.print("- Bạn muốn tìm hóa đơn của Nhân Viên ( 1. Nhập mã | 2. Nhập tên ): ");
+//	public void TimKiem_Ngay(int lc, NamSinh ns) throws IOException {
+//		if (lc == 3)
+//			for (int i = 0; i < lenArr + lenFile; i++) {
+//				if (arrHoaDon[i].getNgay_xuat().SoSanh(ns)) {
+//					System.out.println("\n============HD " + (i + 1) + "=========");
+//					arrHoaDon[i].Xuat();
+//				}
+//			}
+//		else {
+//			for (int i = 0; i < lenArr + lenFile; i++) {
+//				if (arrHoaDon[i].getTRANG_THAI() == lc && arrHoaDon[i].getNgay_xuat().SoSanh(ns)) {
+//					System.out.println("\n============HD " + (i + 1) + "=========");
+//					arrHoaDon[i].Xuat();
+//				}
+//			}
+//		}
+//	}
+        public int TimKiem_MANV() throws IOException {
+            System.out.print("- Bạn muốn tìm hóa đơn của Nhân Viên ( 1. Nhập mã | 2. Nhập tên | 3. Thoát): ");
 		int lc = kt.KTLuaChon(2);
 		String maNV = "", tenNV = "";
 		// Đặt cờ hiệu
@@ -270,7 +272,7 @@ public class ArrHoaDon implements Arr{
 		if (lc == 1) {
 			System.out.print("- Nhập mã: ");
 			maNV = kt.KT_MaNV();
-		} else {
+		} else if(lc == 2) {
 			ArrNhanVien anv = new ArrNhanVien(){};
 			System.out.print("- Nhập tên: ");
 			tenNV = kt.KTTen();
@@ -285,13 +287,16 @@ public class ArrHoaDon implements Arr{
 				// Lấy mã NV
                             maNV = anv.getArrNV()[vtnv].getMS();
 		}
-
+                else if(lc == 3){
+                    return 0;
+                }
                 for(int i = 0 ; i<lenArr+lenFile; i++){
                     if(check && arrHoaDon[i].getMANV().compareTo(maNV)==0){
                         System.out.println("\n==========HD " + ( i + 1 ) +"==========");
                         arrHoaDon[i].Xuat();
                     }
                 }
+        return 0;
 	}
 
 	public void TimKiem_MAKH() throws IOException {
@@ -553,10 +558,10 @@ public class ArrHoaDon implements Arr{
 						System.out.println("1. Từ ngày A -> B.");
 						System.out.println("2. Từ ngày A .");
 						System.out.println("3. Từ đầu đến ngày B.");
-						System.out.println("4. Trong ngày C nào đó.");
-						System.out.println("5. Thoát.");
+//						System.out.println("4. Trong ngày C nào đó.");
+						System.out.println("4. Thoát.");
 						System.out.print("- Nhập lựa chọn của bạn");
-						lcn = kt.KTLuaChon(5);
+						lcn = kt.KTLuaChon(4);
 						switch (lcn) {
 						case 1: {
 							TimKiem_MinMaxNgay();
@@ -573,15 +578,15 @@ public class ArrHoaDon implements Arr{
 							kt.Phim();
 							break;
 						}
+//						case 4: {
+//							NamSinh ns = new NamSinh();
+//							System.out.println("- Bạn muốn tìm hóa đơn ngày: ");
+//							ns.Nhap();
+//							TimKiem_Ngay(3, ns);
+//							kt.Phim();
+//							break;
+//						}
 						case 4: {
-							NamSinh ns = new NamSinh();
-							System.out.println("- Bạn muốn tìm hóa đơn ngày: ");
-							ns.Nhap();
-							TimKiem_Ngay(3, ns);
-							kt.Phim();
-							break;
-						}
-						case 5: {
 							System.out.println("- Bạn đã thoát . ");
 							thoat = kt.Out();
 							kt.Phim();

@@ -52,65 +52,64 @@ public class TrangChu {
 				if (s.compareTo("admin") != 0) {
 					System.out.println("- Chào mừng " + s);
 					do {
-                            System.out.println("\n==========MENU==========");
-                            System.out.println("1. Nhập hóa đơn");
-                            System.out.println("2. Xuất hóa đơn");
-                            System.out.println("3. Tổng doanh thu hôm nay");
-                            System.out.println("4. Thống kê hóa đơn trong ngày hôm nay");
-                            System.out.println("5. Xuất danh sách sản phẩm trong kho");
-                            System.out.println("6. Tìm kiếm đồng hồ");
-                            System.out.println("7. Thoát");
-                            System.out.print("- Nhập lựa chọn của bạn: ");
+//                            System.out.println("\n==========MENU==========");
+//                            System.out.println("1. Nhập hóa đơn");
+//                            System.out.println("2. Xuất hóa đơn");
+//                            System.out.println("3. Tổng doanh thu hôm nay");
+//                            System.out.println("4. Thống kê hóa đơn trong ngày hôm nay");
+//                            System.out.println("5. Xuất danh sách sản phẩm trong kho");
+//                            System.out.println("6. Tìm kiếm đồng hồ");
+//                            System.out.println("7. Thoát");
+//                            System.out.print("- Nhập lựa chọn của bạn: ");
                             lcnv = kt.KTLuaChon(7);
                             switch (lcnv){
-                                case 1:{
-                                    System.out.println("\n==========NHẬP HÀNG==========");
-                                    hd.Them1(maNV);
-                                    kt.Phim();
-                                    break;
-                                }
-                                case 2:{
-                                    System.out.println("1. Hóa đơn nhập");
-                                    System.out.println("2. Hóa đơn xuất");
-                                    System.out.println("3. Tất cả");
-                                    System.out.print("- Bạn muốn xuất hóa đơn: ");
-                                    int tt = kt.KTLuaChon(3);
-                                    hd.Xuat(tt);
-                                    kt.Phim();
-                                    break;
-                                }
-                                case 3:{
-                                    System.out.println("1. Nhập hàng");
-                                    System.out.println("2. Xuất hàng");
-                                    System.out.println("3. Tất cả");
-                                    System.out.print("- Bạn muốn xuất tổng doanh thu hóa đơn: ");
-                                    int lc = kt.KTLuaChon(3);
-                                    hd.TongDoanhThuTrongNgay(lc);
-                                    kt.Phim();
-                                    break;
-                                }
-                                case 4:{
-                                     System.out.println("1. Nhập hàng");
-                                    System.out.println("2. Xuất hàng");
-                                    System.out.println("3. Tất cả");
-                                    System.out.print("- Bạn muốn xuất hóa đơn: ");
-                                    int lc = kt.KTLuaChon(3);
-                                    hd.TimKiem_Ngay(lc, Now);
-                                    kt.Phim();
-                                    break;
-                                }
-                                case 5:{
-                                    System.out.println("- Danh sách sản phẩm trong kho: ");
-                                    ak.Xuat();
-                                    kt.Phim();
-                                    break;
-                                }
-                                case 6:{
-                                    System.out.print("- Nhập tên sản phẩm cần tìm: ");
-                                    sp.TimKiem_Ten();
-                                    kt.Phim();
-                                    break;   
-                                }
+//                                case 1:{
+//                                    System.out.println("\n==========NHẬP HÀNG==========");
+//                                    hd.Them1(maNV);
+//                                    kt.Phim();
+//                                    break;
+//                                }
+//                                case 2:{
+//                                    System.out.println("1. Hóa đơn nhập");
+//                                    System.out.println("2. Hóa đơn xuất");
+//                                    System.out.println("3. Tất cả");
+//                                    System.out.print("- Bạn muốn xuất hóa đơn: ");
+//                                    int tt = kt.KTLuaChon(3);
+//                                    hd.Xuat(tt);
+//                                    kt.Phim();
+//                                    break;
+//                                }
+//                                case 3:{
+//                                    System.out.println("1. Nhập hàng");
+//                                    System.out.println("2. Xuất hàng");
+//                                    System.out.println("3. Tất cả");
+//                                    System.out.print("- Bạn muốn xuất tổng doanh thu hóa đơn: ");
+//                                    int lc = kt.KTLuaChon(3);
+//                                    hd.TongDoanhThuTrongNgay(lc);
+//                                    kt.Phim();
+//                                    break;
+//                                }
+//                                case 4:{
+//                                     System.out.println("1. Nhập hàng");
+//                                    System.out.println("2. Xuất hàng");
+//                                    System.out.println("3. Tất cả");
+//                                    System.out.print("- Bạn muốn xuất hóa đơn: ");
+//                                    int lc = kt.KTLuaChon(3);
+//                                    kt.Phim();
+//                                    break;
+//                                }
+//                                case 5:{
+//                                    System.out.println("- Danh sách sản phẩm trong kho: ");
+//                                    ak.Xuat();
+//                                    kt.Phim();
+//                                    break;
+//                                }
+//                                case 6:{
+//                                    System.out.print("- Nhập tên sản phẩm cần tìm: ");
+//                                    sp.TimKiem_Ten();
+//                                    kt.Phim();
+//                                    break;   
+//                                }
                                 case 7:{
                                     System.out.println("- Bạn đã thoát.");
                                     thoatUS=kt.Out();
@@ -133,9 +132,15 @@ public class TrangChu {
                             System.out.println("5. Loại sản phẩm");
                             System.out.println("6. Đồng hồ");
                             System.out.println("7. Hóa đơn");
-                            System.out.println("8. Thoát");
+                            System.out.println("8. Nhập hóa đơn");
+                            System.out.println("9. Xuất hóa đơn");
+                            System.out.println("10. Tổng doanh thu hôm nay");
+                            System.out.println("11. Thống kê hóa đơn trong ngày hôm nay");
+                            System.out.println("12. Xuất danh sách sản phẩm trong kho");
+                            System.out.println("13. Tìm kiếm đồng hồ");
+                            System.out.println("14. Thoát");
                             System.out.print("- Nhập lựa chọn của bạn: ");
-                            lcad = kt.KTLuaChon(8);
+                            lcad = kt.KTLuaChon(14);
                             switch(lcad){
                                 case 1:{
                                     tk.MenuChinh();
@@ -171,7 +176,55 @@ public class TrangChu {
                                     hd.MenuChinh();
                                     kt.Phim();
                                     break;
-                                }case 8:{
+                                }
+                                  case 8:{
+                                    System.out.println("\n==========NHẬP HÀNG==========");
+                                    hd.Them1(maNV);
+                                    kt.Phim();
+                                    break;
+                                }
+                                case 9:{
+                                    System.out.println("1. Hóa đơn nhập");
+                                    System.out.println("2. Hóa đơn xuất");
+                                    System.out.println("3. Tất cả");
+                                    System.out.print("- Bạn muốn xuất hóa đơn: ");
+                                    int tt = kt.KTLuaChon(3);
+                                    hd.Xuat(tt);
+                                    kt.Phim();
+                                    break;
+                                }
+                                case 10:{
+                                    System.out.println("1. Nhập hàng");
+                                    System.out.println("2. Xuất hàng");
+                                    System.out.println("3. Tất cả");
+                                    System.out.print("- Bạn muốn xuất tổng doanh thu hóa đơn: ");
+                                    int lc = kt.KTLuaChon(3);
+                                    hd.TongDoanhThuTrongNgay(lc);
+                                    kt.Phim();
+                                    break;
+                                }
+                                case 11:{
+                                     System.out.println("1. Nhập hàng");
+                                    System.out.println("2. Xuất hàng");
+                                    System.out.println("3. Tất cả");
+                                    System.out.print("- Bạn muốn xuất hóa đơn: ");
+                                    int lc = kt.KTLuaChon(3);
+                                    kt.Phim();
+                                    break;
+                                }
+                                case 12:{
+                                    System.out.println("- Danh sách sản phẩm trong kho: ");
+                                    ak.Xuat();
+                                    kt.Phim();
+                                    break;
+                                }
+                                case 13:{
+                                    System.out.print("- Nhập tên sản phẩm cần tìm: ");
+                                    sp.TimKiem_Ten();
+                                    kt.Phim();
+                                    break;   
+                                }
+                                case 14:{
                                     System.out.println("- Bạn đã thoát.");
                                     thoatAD = kt.Out();
                                     break;
